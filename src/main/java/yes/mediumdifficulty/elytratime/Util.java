@@ -12,7 +12,20 @@ import java.util.Optional;
 
 public class Util {
     public static String formatTimePercent(ItemStack item, String format, String timeFormat, World world) {
+
         String timeLeft = formatTime(Calculator.timeRemaining(item, world), timeFormat);
+
+        // Get how many minutes are left for color formatting based on %
+        String[] MinutesSplit = timeLeft.split("m");
+        int MinutesLeft = Integer.parseInt(MinutesSplit[0]);
+
+        if (MinutesLeft == 0) {
+            timeLeft = ("§c"+timeLeft);
+        } else if (MinutesLeft < 2) {
+            timeLeft = ("§e"+timeLeft);
+        }
+
+
         int percent = (int)(Calculator.fractionRemaining(item, world) * 100.0);
 
         return format
