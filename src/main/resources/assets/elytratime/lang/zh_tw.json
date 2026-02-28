@@ -1,0 +1,21 @@
+{
+	"key.elytratime.show": "顯示剩餘時間",
+	"key.elytratime.config": "開啟設定選單",
+	"category.elytratime.controls": "鞘翅時間",
+	"message.elytratime.no_elytra": "您沒有裝備鞘翅！",
+	"value.elytratime.tooltip_format": "剩餘 [TIME]（[%]）",
+	"value.elytratime.time_format": "[M] 分 [S] 秒",
+	"value.elytratime.time_report_format": "剩餘飛行時間：[TIME]（[%]）",
+	"title.elytratime.config": "鞘翅時間",
+	"category.elytratime.general": "一般",
+	"option.elytratime.tooltip_format": "工具提示格式",
+	"option.elytratime.enable_tooltip": "啟用工具提示",
+	"option.elytratime.alert_threshold": "警報閾值",
+	"option.elytratime.time_format": "時間格式",
+	"option.elytratime.time_report_format": "時間報告格式",
+	"tooltip.elytratime.tooltip_format": "工具提示的格式\n\n§n變數§r\n§l[TIME]§r：剩餘時間\n§l[%]§r：剩餘耐久度百分比",
+	"tooltip.elytratime.enabled": "啟用／停用工具提示",
+	"tooltip.elytratime.alert_threshold": "鞘翅必須低於此百分比才能提醒玩家",
+	"tooltip.elytratime.time_format": "時間格式\n\n§n變數§r\n§l[M]§r：分鐘\n§l[S]§r：秒",
+	"tooltip.elytratime.time_report_format": "聊天中時間報告使用的格式\n\n§n變數§r\n§l[TIME]§r：剩餘時間\n§l[%]§r：剩餘耐久度百分比"
+}
