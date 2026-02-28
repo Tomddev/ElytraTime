@@ -1,7 +1,7 @@
 {
 	"key.elytratime.show": "Show time left",
 	"key.elytratime.config": "Open config menu",
-	"category.elytratime.controls": "Elytra Time",
+	"key.category.elytratime.controls": "Elytra Time",
 	"message.elytratime.no_elytra": "You don't have an elytra equipped!",
 	"value.elytratime.tooltip_format": "[TIME] remaining ([%]%)",
 	"value.elytratime.time_format": "[M]m [S]s",

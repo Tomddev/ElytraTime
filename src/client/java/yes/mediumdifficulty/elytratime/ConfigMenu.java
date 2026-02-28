@@ -5,30 +5,30 @@ import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import me.shedaniel.clothconfig2.api.Requirement;
 import me.shedaniel.clothconfig2.gui.entries.BooleanListEntry;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 
 public class ConfigMenu {
     public static Screen build(Screen parent) {
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
-                .setTitle(Text.translatable("title.elytratime.config"))
+                .setTitle(Component.translatable("title.elytratime.config"))
                 .setSavingRunnable(() -> ElytraTime.config.saveToFile());
 
-        ConfigCategory general = builder.getOrCreateCategory(Text.translatable("category.elytratime.general"));
+        ConfigCategory general = builder.getOrCreateCategory(Component.translatable("category.elytratime.general"));
 
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
-        BooleanListEntry enableTooltipEntry = builder.entryBuilder().startBooleanToggle(Text.translatable("option.elytratime.enable_tooltip"), ElytraTime.config.tooltipEnabled)
+        BooleanListEntry enableTooltipEntry = builder.entryBuilder().startBooleanToggle(Component.translatable("option.elytratime.enable_tooltip"), ElytraTime.config.tooltipEnabled)
                 .setSaveConsumer(v -> ElytraTime.config.tooltipEnabled = v)
-                .setTooltip(Text.translatable("tooltip.elytratime.enabled"))
+                .setTooltip(Component.translatable("tooltip.elytratime.enabled"))
                 .setDefaultValue(true)
                 .build();
         general.addEntry(enableTooltipEntry);
 
-        general.addEntry(entryBuilder.startStrField(Text.translatable("option.elytratime.tooltip_format"), ClientTextUtils.getTooltipFormat())
+        general.addEntry(entryBuilder.startStrField(Component.translatable("option.elytratime.tooltip_format"), ClientTextUtils.getTooltipFormat())
                 .setSaveConsumer(v -> ElytraTime.config.tooltipFormat = v)
-                .setTooltip(Text.translatable("tooltip.elytratime.tooltip_format"))
+                .setTooltip(Component.translatable("tooltip.elytratime.tooltip_format"))
                 .setDefaultValue(ClientTextUtils.getValueFromKey("value.elytratime.tooltip_format"))
                 .setRequirement(Requirement.isTrue(enableTooltipEntry))
                 .build());
@@ -39,15 +39,15 @@ public class ConfigMenu {
 //                .setDefaultValue(10)
 //                .build());
 
-        general.addEntry(entryBuilder.startStrField(Text.translatable("option.elytratime.time_format"), ClientTextUtils.getTimeFormat())
+        general.addEntry(entryBuilder.startStrField(Component.translatable("option.elytratime.time_format"), ClientTextUtils.getTimeFormat())
                 .setSaveConsumer(v -> ElytraTime.config.timeFormat = v)
-                .setTooltip(Text.translatable("tooltip.elytratime.time_format"))
+                .setTooltip(Component.translatable("tooltip.elytratime.time_format"))
                 .setDefaultValue(ClientTextUtils.getValueFromKey("value.elytratime.time_format"))
                 .build());
 
-        general.addEntry(entryBuilder.startStrField(Text.translatable("option.elytratime.time_report_format"), ClientTextUtils.getTimeReportFormat())
+        general.addEntry(entryBuilder.startStrField(Component.translatable("option.elytratime.time_report_format"), ClientTextUtils.getTimeReportFormat())
                 .setSaveConsumer(v -> ElytraTime.config.timeReportFormat = v)
-                .setTooltip(Text.translatable("tooltip.elytratime.time_report_format"))
+                .setTooltip(Component.translatable("tooltip.elytratime.time_report_format"))
                 .setDefaultValue(ClientTextUtils.getValueFromKey("value.elytratime.time_report_format"))
                 .build());
 

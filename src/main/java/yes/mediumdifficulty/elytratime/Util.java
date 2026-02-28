@@ -1,23 +1,21 @@
 package yes.mediumdifficulty.elytratime;
 
-import dev.emi.trinkets.api.TrinketsApi;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ElytraItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import java.util.Optional;
 
 public class Util {
-    public static String formatTimePercent(ItemStack item, String format, String timeFormat, World world) {
-        String timeLeft = formatTime(Calculator.timeRemaining(item, world), timeFormat);
-        int percent = (int)(Calculator.fractionRemaining(item, world) * 100.0);
+    public static String formatTimePercent(ItemStack item, String format, String timeFormat, Level level) {
+        var details = new TimeDetails(item, level);
+
+        var timeLeft = formatTime(details.absolute, timeFormat);
 
         return format
                 .replaceAll("\\[TIME]", timeLeft)
-                .replaceAll("\\[%]", String.valueOf(percent));
+                .replaceAll("\\[%]", String.valueOf(Math.round(details.fraction * 100f)));
     }
 
     public static String formatTime(int time, String format) {
@@ -26,28 +24,13 @@ public class Util {
                 .replaceAll("\\[S]", String.valueOf(time % 60));
     }
 
-    public static Optional<ItemStack> findElytra(PlayerEntity player) {
-        ItemStack chestPlate = player.getInventory().getArmorStack(EquipmentSlot.CHEST.getEntitySlotId());
+    public static Optional<ItemStack> findElytra(Player player) {
+        var slot = EquipmentSlot.CHEST.getIndex(36);
 
-        if (chestPlate.getItem() instanceof ElytraItem) {
+        var chestPlate = player.getInventory().getItem(slot);
+
+        if (chestPlate.getItem() == Items.ELYTRA)
             return Optional.of(chestPlate);
-        }
-
-        if (FabricLoader.getInstance().isModLoaded("trinkets")) {
-            var found = TrinketsApi.getTrinketComponent(player).flatMap(trinketComponent -> {
-                for (var entry : trinketComponent.getAllEquipped()) {
-                    ItemStack itemStack = entry.getRight();
-                    if (itemStack.getItem() instanceof ElytraItem) {
-                        return Optional.of(itemStack);
-                    }
-                }
-                return Optional.empty();
-            });
-
-            if (found.isPresent()) {
-                return found;
-            }
-        }
 
         return Optional.empty();
     }

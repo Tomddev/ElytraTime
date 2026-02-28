@@ -1,7 +1,7 @@
 {
 	"key.elytratime.show": "Reveal the time henceforth",
 	"key.elytratime.config": "Reveal the configuration booklet",
-	"category.elytratime.controls": "Elytra Duration",
+	"key.category.elytratime.controls": "Elytra Duration",
 	"message.elytratime.no_elytra": "Thou lacketh an elytra upon thee!",
 	"value.elytratime.tooltip_format": "[TIME] remaining ([%]%)",
 	"value.elytratime.time_format": "[M]m [S]s",

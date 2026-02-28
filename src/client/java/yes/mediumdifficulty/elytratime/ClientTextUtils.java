@@ -1,6 +1,6 @@
 package yes.mediumdifficulty.elytratime;
 
-import net.minecraft.util.Language;
+import net.minecraft.locale.Language;
 
 public class ClientTextUtils {
     public static String getTooltipFormat() {
@@ -16,6 +16,6 @@ public class ClientTextUtils {
     }
 
     public static String getValueFromKey(String key) {
-        return Language.getInstance().get(key);
+        return Language.getInstance().getOrDefault(key);
     }
 }
